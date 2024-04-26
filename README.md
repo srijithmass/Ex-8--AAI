@@ -1,7 +1,7 @@
- <H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+ <H3>NAME: SRIJITH R</H3>
+<H3>REGISTER NO: 212221240054</H3>
 <H3>EX. NO.8</H3>
-<H3>DATE:</H3>
+<H3>DATE:25/04/2024</H3>
 <H1 ALIGN =CENTER>Implementation of Speech Recognition</H1>
 <H3>Aim:</H3> 
  To implement the conversion of live speech to text.<BR>
@@ -22,9 +22,35 @@ Step 11: Perform speech recognition with exceptional handling:<Br>
 •	A generic exception block captures any other unexpected errors.<Br>
 <H3>Program:</H3>
 
-Insert your code her
+```python
+import speech_recognition as sr
 
+# Assign a string variable "file" with the name of the audio file that you want to transcribe.
+file = "audio.wav"
+
+# Create an instance of the Recognizer class called "r".
+r = sr.Recognizer()
+
+# Use the AudioFile() method of sr to create an AudioFile object with the audio file name passed as an argument.
+with sr.AudioFile(file) as source:
+    audio = r.record(source)
+
+# Use the recognize_google() method of r to transcribe the audio data stored in the "audio" variable.
+try:
+    text = r.recognize_google(audio)
+except sr.UnknownValueError:
+    print("Not clear")
+except sr.RequestError as e:
+    print("Couldn't get results from Google Speech Recognition service; {0}".format(e))
+
+# Print the text in the next lines.
+for line in text.splitlines():
+    print(line)
+```
 <H3> Output:</H3>
-Show the results here
+
+![](1.png)
 
 <H3> Result:</H3>
+
+Thus, we have implemented a program that will transcribe the audio file in the file variable and print the transcribed text on the console, one line at a time.
